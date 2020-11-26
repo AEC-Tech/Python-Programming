@@ -30,6 +30,39 @@ def login():
             print("Username and Password matched successfully")
             return True
 
+def searchBook():
+    name = input("Enter book title to be searched : ")
+    bdf = pd.read_csv("books.csv")
+    df = bdf.loc[bdf["title"] == name]
+    if df.empty:
+        print("No book found with given title")
+        return False
+    else:
+        print("Book details are ")
+        print(df)
+        return True
+
+def deleteBook():
+    name = input("Enter book title to be deleted : ")
+    bdf = pd.read_csv("books.csv")
+    bdf = bdf.drop(bdf[bdf["title"] == name].index)
+    bdf.to_csv("books.csv",index = False)
+    print("Book Deleted Successfully")
+
+def showBooks():
+    bdf = pd.read_csv("books.csv")
+    print(bdf)
+
+
+def addNewMember():
+    print("  ")
+def searchMember():
+    print("  ")
+def deleteMember():
+    print("  ")
+def showMembers():
+    bdf = pd.read_csv("members.csv")
+    print(bdf)
 
 def showMenu():
     print("-----------------------------")
@@ -47,10 +80,30 @@ def showMenu():
     print("Press 10 - Return a Book")
     print("Press 11 - Show All Issued Books")
     print("Press 12 - To view Charts")
+    print("Press 13 - To Exit")
     choice = int(input("Enter your choice : "))
     return choice
 
 if login():
-    ch = showMenu()
-    if ch == 1:
-        addNewBook()
+    while True:
+        ch = showMenu()
+        if ch == 1:
+            addNewBook()
+        elif ch == 2:
+            searchBook()
+        elif ch == 3:
+            deleteBook()
+        elif ch == 4:
+            showBooks()
+        elif ch == 5:
+            addNewMember()
+        elif ch == 6:
+            searchMember()
+        elif ch == 7:
+            deleteMember()
+        elif ch == 8:
+            showMembers()
+        elif ch == 13:
+            break
+        else:
+            print("Invalid Option Selected")

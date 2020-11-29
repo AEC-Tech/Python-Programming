@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import date
 def addNewBook():
     bookid = int(input("Enter a book id : "))
     title = input("Enter book title : ")
@@ -92,7 +93,21 @@ def deleteMember():
 def showMembers():
     mdf = pd.read_csv("members.csv")
     print(mdf)
+def issueBook():
+    bname = input("Enter Book name to be searched : ")
+    mname = input("Enter member name to be searched : ")
+    idf = pd.read_csv("issuedbooks.csv")
+    book_issue = [bname,mname,date.today(),""]
+    n = idf["book_name"].count()
+    idf.at[n] = book_issue
+    idf.to_csv("issuedbooks.csv",index = False)
+    print("Book Issued Successfully")
 
+def showIssuedBooks():
+    idf = pd.read_csv("issuedbooks.csv")
+    print(idf)
+def returnBook():
+    print("")
 def showchart():
     print("Press 1 - Books and their Cost")
     print("Press 2 - Fine Paid by Members")
@@ -143,6 +158,12 @@ if login():
             deleteMember()
         elif ch == 8:
             showMembers()
+        elif ch == 9:
+            issueBook()
+        elif ch == 10:
+            returnBook()
+        elif ch == 11:
+            showIssuedBooks()
         elif ch == 12:
             showchart()
         elif ch == 13:

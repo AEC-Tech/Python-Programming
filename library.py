@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 def addNewBook():
     bookid = int(input("Enter a book id : "))
     title = input("Enter book title : ")
@@ -55,15 +56,54 @@ def showBooks():
 
 
 def addNewMember():
-    print("  ")
-def searchMember():
-    print("  ")
-def deleteMember():
-    print("  ")
-def showMembers():
-    bdf = pd.read_csv("members.csv")
-    print(bdf)
+    mid = int(input("Enter Member id : "))
+    name = input("Enter name of the member : ")
+    phone = input("Enter phone number : ")
+    email = input("Enter email id : ")
+    address = input("Enter address : ")
+    number = 0
+    mdf = pd.read_csv("members.csv")
+    n = mdf["Memberid"].count()
+    mdf.at[n] = [mid, name, phone, email, address, number]
+    mdf.to_csv("members.csv", index=False)
+    print("Member added successfully")
 
+
+def searchMember():
+    name = input("Enter member name to be searched : ")
+    mdf = pd.read_csv("members.csv")
+    df = mdf.loc[mdf["name"] == name]
+    if df.empty:
+        print("No member found with given name")
+        return False
+    else:
+        print("Member details are ")
+        print(df)
+        return True
+
+
+def deleteMember():
+    name = input("Enter member name to be deleted : ")
+    mdf = pd.read_csv("members.csv")
+    mdf = mdf.drop(mdf[mdf["name"] == name].index)
+    mdf.to_csv("members.csv", index=False)
+    print("Member Deleted Successfully")
+
+def showMembers():
+    mdf = pd.read_csv("members.csv")
+    print(mdf)
+
+def showchart():
+    print("Press 1 - Books and their Cost")
+    print("Press 2 - Fine Paid by Members")
+    print("Press 3 - Frequently Issued Books")
+    print("Press 4 - No. of Books Issued per week")
+    ch = int(input("Enter your choice : "))
+    if ch == 1:
+        bdf = pd.read_csv("books.csv")
+        df = bdf[["title","cost"]]
+        bdf.plot(kind='bar')
+    #print(bdf)
 def showMenu():
     print("-----------------------------")
     print("       ABC LIBRARY MGT       ")
@@ -103,6 +143,8 @@ if login():
             deleteMember()
         elif ch == 8:
             showMembers()
+        elif ch == 12:
+            showchart()
         elif ch == 13:
             break
         else:

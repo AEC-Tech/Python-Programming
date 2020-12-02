@@ -93,21 +93,57 @@ def deleteMember():
 def showMembers():
     mdf = pd.read_csv("members.csv")
     print(mdf)
+
+
 def issueBook():
     bname = input("Enter Book name to be searched : ")
+    df = pd.read_csv("books.csv")
+    df = df.loc[df["title"] == bname]
+    if df.empty:
+        print("No Book Found in the Library")
+        return
+
     mname = input("Enter member name to be searched : ")
+    df = pd.read_csv("members.csv")
+    df = df.loc[df["Name"] == mname]
+    if df.empty:
+        print("No such Member Found")
+        return
+
     idf = pd.read_csv("issuedbooks.csv")
     book_issue = [bname,mname,date.today(),""]
     n = idf["book_name"].count()
     idf.at[n] = book_issue
     idf.to_csv("issuedbooks.csv",index = False)
     print("Book Issued Successfully")
+    df = pd.read_csv("members.csv")
+
 
 def showIssuedBooks():
     idf = pd.read_csv("issuedbooks.csv")
     print(idf)
 def returnBook():
-    print("")
+    bname = input("Enter Book to be returned : ")
+    mname = input("Enter Member who has the book : ")
+    idf = pd.read_csv("issuedbooks.csv")
+    idf = idf.loc[idf["book_name"] == bname]
+    if idf.empty:
+        print("The book is not issued in records")
+    else:
+        idf = idf.loc[idf["member_name"] == mname]
+        if idf.empty:
+            print("The book is not issued to the member")
+        else:
+            print("Book can be returned")
+            ans = input("Are you sure you want to return the book : ")
+            if ans.lower() == "yes":
+                idf = pd.read_csv("issuedbooks.csv")
+                idf = idf.drop(idf[idf["book_name"] == bname].index)
+                idf.to_csv("issuedbooks.csv", index=False)
+                print("Book Returned Successfully")
+            else:
+                print("Return operation cancelled")
+
 def showchart():
     print("Press 1 - Books and their Cost")
     print("Press 2 - Fine Paid by Members")

@@ -1,13 +1,29 @@
-str=input("Enter a string")
-print("String is ",str)
-count={}
-for x in str:
-    if x in count.keys():
-        count[x]+=1
-    else:
-        #count[x]=1
-        count.update()
+text = input("Enter some text ")
+count_letters = len(text)
+count_words = len(text.split(" "))
+count_alpha = 0
+count_digit = 0
+count_space = 0
+count_special = 0
 
-print(count)
-for x in count.keys():
-    print(x, " occurs for ",count[x]," times")
+for ch in text:
+    if ch.isalpha():
+        count_alpha += 1
+    elif ch.isdigit():
+        count_digit += 1
+    elif ch.isspace():
+        count_space += 1
+    else:
+        count_special += 1
+        
+
+
+print("Total no. of characters ",count_letters)
+print("Total no. of words ",count_words)
+print("Total no. of alphabets ",count_alpha)
+print("Total no. of digits ",count_digit)
+print("Total no. of spaces ",count_space)
+print("Total no. of special characters ",count_special)
+
+
+

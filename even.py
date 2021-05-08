@@ -1,9 +1,12 @@
-L = [78,45,90,66,85,65]
+def process(A):
+    for i in range(len(A)):
+        if i % 2 == 0:
+            A[i] *= 2
+        else:
+            A[i] /= 2
 
-val = L[0]
-for i in range(len(L)-1):
-    L[i] = L[i+1]
 
-L[-1] = val
-
-print(L)
+N = [10,21,30]
+print(N)
+process(N)
+print(N)

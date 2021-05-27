@@ -47,6 +47,42 @@ while True:
         else:
             print("Player 2 ", p2, " WINS !!!!")
         break
+    elif data[2][0] == data[2][1] == data[2][2]:
+        if data[2][0] == "X":
+            print("Player 1 ",p1," WINS !!!!")
+        else:
+            print("Player 2 ", p2, " WINS !!!!")
+        break
+    elif data[0][0] == data[1][0] == data[2][0]:
+        if data[2][0] == "X":
+            print("Player 1 ",p1," WINS !!!!")
+        else:
+            print("Player 2 ", p2, " WINS !!!!")
+        break
+    elif data[0][1] == data[1][1] == data[2][1]:
+        if data[2][1] == "X":
+            print("Player 1 ",p1," WINS !!!!")
+        else:
+            print("Player 2 ", p2, " WINS !!!!")
+        break
+    elif data[0][2] == data[1][2] == data[2][2]:
+        if data[2][2] == "X":
+            print("Player 1 ",p1," WINS !!!!")
+        else:
+            print("Player 2 ", p2, " WINS !!!!")
+        break
+    elif data[0][0] == data[1][1] == data[2][2]:
+        if data[0][0] == "X":
+            print("Player 1 ",p1," WINS !!!!")
+        else:
+            print("Player 2 ", p2, " WINS !!!!")
+        break
+    elif data[0][2] == data[1][1] == data[2][0]:
+        if data[2][0] == "X":
+            print("Player 1 ",p1," WINS !!!!")
+        else:
+            print("Player 2 ", p2, " WINS !!!!")
+        break
     elif turn > 9:
         print("It is a draw")
         break

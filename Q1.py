@@ -1,9 +1,4 @@
-f = open("sample.txt","r")
-data = f.readlines()
-for line in data:
-    for ch in line:
-        if ch == ' ':
-            print('#',end='')
-        else:
-            print(ch,end='')
-f.close()
+import pandas as pd
+df = pd.read_csv("item.csv")
+print(df)
+print(df.max())

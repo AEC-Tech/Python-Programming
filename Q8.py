@@ -1,17 +1,12 @@
-def countWords():
-    '''
-    Function to read a text file and count
-    how many words starts with A
-    :return:
-    '''
-    f = open("sample.txt","r")
-    cnt = 0
-    words = f.read().split()
-    for w in words:
-        if w[0] in 'aA':
-            print(w)
-            cnt += 1
-    f.close()
-    print("No. of words starting with A are ",cnt)
-
-countWords()
+import pandas as pd
+data = {"Name" :["Toshi","Bhawana","Samridhi"],
+        "Age":[16,17,18],
+        "Weight":[45,50,48]}
+df = pd.DataFrame(data,index=['Row_1',"Row_2","Row_3"])
+print(df)
+print("Column Labels are ",df.columns)
+print("Row labels are ",df.index)
+print("Data types are ",df.dtypes)
+print("Dimension is ",df.ndim)
+print("No. of values in DataFrame ",df.size)
+print("No. of rows and columns is ",df.shape)
